@@ -1,0 +1,11 @@
+show
+.row.justify-content-md-center
+  .col-10
+    .row.product_show
+      .image.pull-left
+        =image_tag @product.image.url(:thumb), class: 'img-thumbnail' if @product.image?
+      .button_block.pull-rigth
+        %p
+          =@product.description
+        Price: #{@product.price}
+        =button_to 'Add', '#', class: 'btn btn-success'

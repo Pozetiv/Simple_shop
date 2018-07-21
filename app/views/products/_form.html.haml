@@ -1,0 +1,6 @@
+=simple_form_for(@product) do |f|
+  =f.input :name, placeholder: 'Write name product', label: false
+  =f.input :description, placeholder: 'Describe the product', label: false
+  =f.input :price
+  =f.input :image, as: :file
+  =f.button :submit

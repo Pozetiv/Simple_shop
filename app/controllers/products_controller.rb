@@ -2,11 +2,12 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:edit, :update, :destroy, :show]
 
   def index
-    @products = Product.all
+    @products ||= Product.order(:category)
   end
 
   def new
     @product = Product.new
+    @category = Product::Category_name
   end
 
   def create
@@ -17,7 +18,7 @@ class ProductsController < ApplicationController
           @product.images.create(image: image)
         end
       end
-      redirect_to @product
+      redirect_to @product, success: 'Create'
     else
       render :new
     end
@@ -52,6 +53,6 @@ class ProductsController < ApplicationController
   end
 
   def products_params
-    params.require(:product).permit(:name, :description, :price, :image)
+    params.require(:product).permit(:name, :description, :price, :image, :category)
   end
 end

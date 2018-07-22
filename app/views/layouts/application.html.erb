@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SimpleShop</title>
+  <title><%=yield(:title)%></title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -14,10 +14,9 @@
   <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
     <h5 class="my-0 mr-md-auto font-weight-normal"><%= link_to 'Company name', root_path %></h5>
     <nav class="my-2 my-md-0 mr-md-3">
-      <a class="p-2 text-dark" href="#">Features</a>
-      <a class="p-2 text-dark" href="#">Enterprise</a>
       <a class="p-2 text-dark" href="#">Support</a>
-      <a class="p-2 text-dark" href="#">Pricing</a>
+        <%= link_to  carts_path, class: 'p-2 btn btn-outline-primary' do %>
+          <i class="fas fa-shopping-cart"></i> Cart <% end %>
     </nav>
     <% if user_signed_in? %>
       <%= link_to  destroy_user_session_path, method: :delete, class: ' btn btn-outline-primary' do %>
@@ -29,11 +28,9 @@
     <% end %>
   </div>
 </header>
-<div class="myss">
-  <i class="fab fa-blogger"></i>
-
-</div>
 <div class="container-fluid">
+  <%= render ('shared/flash_messages') %>
+
   <%= yield %>
 </div>
 </body>

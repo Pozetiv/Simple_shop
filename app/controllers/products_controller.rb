@@ -33,7 +33,9 @@ class ProductsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @order_items = current_order.order_items.new
+  end
 
   def destroy
     if @pproduct.destroy

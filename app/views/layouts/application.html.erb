@@ -1,29 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>SimpleShop</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>SimpleShop</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+</head>
+<body>
+<header>
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <h5 class="my-0 mr-md-auto font-weight-normal"><%= link_to 'Company name', root_path %></h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+      <a class="p-2 text-dark" href="#">Features</a>
+      <a class="p-2 text-dark" href="#">Enterprise</a>
+      <a class="p-2 text-dark" href="#">Support</a>
+      <a class="p-2 text-dark" href="#">Pricing</a>
+    </nav>
+    <% if user_signed_in? %>
+      <%= link_to  destroy_user_session_path, method: :delete, class: ' btn btn-outline-primary' do %>
+         <i class="fas fa-sign-out-alt"></i> Logout <% end %>
+    <% else %>
+      <%= link_to "Sign UP",new_user_registration_path, class: 'sign-in-alt btn btn-outline-primary' %>
+      <%= link_to new_user_session_path, class: 'btn btn-outline-primary' do %>
+         <i class="fas fa-sign-in-alt"></i> Sign IN <% end %>
+    <% end %>
+  </div>
+</header>
+<div class="myss">
+  <i class="fab fa-blogger"></i>
 
-  <body>
-    <header>
-      <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-        <h5 class="my-0 mr-md-auto font-weight-normal"><%= link_to 'Company name', root_path %></h5>
-        <nav class="my-2 my-md-0 mr-md-3">
-          <a class="p-2 text-dark" href="#">Features</a>
-          <a class="p-2 text-dark" href="#">Enterprise</a>
-          <a class="p-2 text-dark" href="#">Support</a>
-          <a class="p-2 text-dark" href="#">Pricing</a>
-        </nav>
-        <a class="btn btn-outline-primary" href="#">Sign up</a>
-      </div>
-    </header>
-    <div class="container-fluid">
-      <%= yield %>
-    </div>
-  </body>
+</div>
+<div class="container-fluid">
+  <%= yield %>
+</div>
+</body>
+
 </html>

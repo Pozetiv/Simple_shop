@@ -2,15 +2,17 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:edit, :update, :destroy, :show]
 
   def index
-    @products = Product.all
+    @products ||= Product.order(:category)
   end
 
   def new
     @product = Product.new
+    @category = Product::Category_name
   end
 
   def create
     @product = Product.new(products_params)
+    binding.pry
     if @product.save
       if params[:images]
         params[:images].each do |image|
@@ -52,6 +54,6 @@ class ProductsController < ApplicationController
   end
 
   def products_params
-    params.require(:product).permit(:name, :description, :price, :image)
+    params.require(:product).permit(:name, :description, :price, :image, :category)
   end
 end

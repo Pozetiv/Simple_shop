@@ -1,0 +1,31 @@
+
+
+<% if @cart.order_items.any? %>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Product</th>
+      <th scope="col">Quanity</th>
+      <th scope="col">Unit_price</th>
+      <th scope="col">Price for the positions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @cart.order_items.each do |cart| %>
+    <tr>
+      <th scope="row"><%= link_to cart.product.name, product_path(cart) %></th>
+      <td><%= cart.quantity %></td>
+      <td><%= cart.unit_price %></td>
+      <td><%= cart.calculate_price %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <th scope="row"> Total price:</th>
+      <td></td>
+      <td>Number_calculate_method</td>
+    </tr>
+    </tbody>
+  </table>
+<% else %>
+  <h2>Your cart empty</h2>
+<% end %>

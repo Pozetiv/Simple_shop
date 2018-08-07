@@ -8,7 +8,7 @@ class AddressesController < ApplicationController
   def create
     @order = current_order
     binding.pry
-    @address = @order.address.new(addresses_params)
+    @address = @order.build_address(addresses_params)
     if @address.save
       flash.now[:success] = 'Added your address'
       redirect_to @address

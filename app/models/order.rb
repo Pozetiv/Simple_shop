@@ -3,6 +3,9 @@ class Order < ApplicationRecord
   has_many :products, through: :order_items
 #  belongs_to :user
 
+  has_one :address
+
+
   def add_product(product)
     current_order_items = order_items.find_by(product_id: product[:product_id])
      if current_order_items

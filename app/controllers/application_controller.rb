@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   helper_method :current_order
+  add_flash_types :success, :info, :danger, :primary, :dark, :light
 
   private
 

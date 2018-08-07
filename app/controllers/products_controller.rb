@@ -1,4 +1,4 @@
-class ProductsController < ApplicationController
+  class ProductsController < ApplicationController
   before_action :find_product, only: [:edit, :update, :destroy, :show]
 
   def index
@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
           @product.images.create(image: image)
         end
       end
-      redirect_to @product
+      redirect_to @product, success: 'Create'
     else
       render :new
     end

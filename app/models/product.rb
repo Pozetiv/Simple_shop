@@ -10,4 +10,7 @@ class Product < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   Category_name = %w[Souvenirs Сups Caps Pendents]
+
+  extend FriendlyId
+  friendly_id :name
 end

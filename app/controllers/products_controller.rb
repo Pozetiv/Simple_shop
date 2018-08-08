@@ -3,22 +3,17 @@
 
   def index
     @products ||= Product.order(:category)
+    @cart = current_order.order_items
   end
 
   def new
     @product = Product.new
-    @category = Product::Category_name
+    @category = Product::CategoryName
   end
 
   def create
     @product = Product.new(products_params)
-    binding.pry
     if @product.save
-      if params[:images]
-        params[:images].each do |image|
-          @product.images.create(image: image)
-        end
-      end
       redirect_to @product, success: 'Create'
     else
       render :new
@@ -54,6 +49,6 @@
   end
 
   def products_params
-    params.require(:product).permit(:name, :description, :price, :image, :category)
+    params.require(:product).permit(:name, :description, :price, :category, :quantity, images_attributes: [:id, :image, :_destroy] )
   end
 end

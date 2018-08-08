@@ -4,13 +4,15 @@ class OrderItemsController < ApplicationController
     @order = current_order
     @order.add_product(orders_items_params)
     session[:order_id] = @order.id
+    find_product = Product.find(params[:order_item][:product_id])
+    redirect_to product_path(find_product), success: "#{find_product.name} added to cart"
   end
 
   def destroy
     @order = current_order
-    @item = @order.order_item.find(params[:id])
+    @item = @order.order_items.find(params[:id])
     @item.destroy
-    @order.save
+    redirect_to carts_path
   end
 
   private

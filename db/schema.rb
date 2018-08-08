@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_08_074624) do
+ActiveRecord::Schema.define(version: 2018_08_18_142641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,22 @@ ActiveRecord::Schema.define(version: 2018_08_08_074624) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
+  create_table "images", force: :cascade do |t|
+    t.string "image"
+    t.integer "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "msg_body"
+    t.string "name"
+    t.string "last_name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "order_items", force: :cascade do |t|
     t.integer "product_id"
     t.integer "order_id"
@@ -57,10 +73,10 @@ ActiveRecord::Schema.define(version: 2018_08_08_074624) do
     t.string "name"
     t.text "description"
     t.float "price"
-    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "category"
+    t.integer "quantity"
   end
 
   create_table "users", force: :cascade do |t|
@@ -81,6 +97,7 @@ ActiveRecord::Schema.define(version: 2018_08_08_074624) do
   end
 
   add_foreign_key "addresses", "orders"
+  add_foreign_key "images", "products"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
 end

@@ -1,7 +1,11 @@
 =simple_form_for(@product) do |f|
   =f.input :name,         placeholder: 'Write name product', label: false
-  =f.input :description,  placeholder: 'Describe the product', label: false
+  =f.input :description,  placeholder: 'Describe the product', label: false, as: :text
   =f.input :category,     collection: @category, prompt: 'Select category product', label: false
   =f.input :price
-  =f.input :image, as: :file
+  =f.input :quantity
+  =f.simple_fields_for :images do |image|
+    =render 'image_fields', f: image
+  .links
+    =link_to_add_association 'Add Image', f, :images, class: 'btn btn-success'
   =f.button :submit

@@ -11,5 +11,4 @@ class ApplicationController < ActionController::Base
       Order.create
     end
   end
-
 end

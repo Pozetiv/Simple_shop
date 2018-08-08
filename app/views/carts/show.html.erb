@@ -11,7 +11,10 @@
     <tbody>
     <% @cart.order_items.each do |cart| %>
     <tr>
-      <th scope="row"><%= link_to cart.product.name, product_path(cart.product) %></th>
+      <th scope="row"><%= link_to cart.product.name, product_path(cart.product) %>
+                      <%= link_to  order_item_path(cart), method: :delete, data: { confirm: 'Are your want delete product from cart' } do %>
+                        <i class="fas fa-trash"></i><% end %>
+      </th>
       <td><%= cart.quantity %></td>
       <td><%= cart.unit_price %></td>
       <td><%= cart.calculate_price %></td>
@@ -27,4 +30,5 @@
   <%= link_to 'Add address', new_order_item_address_path(@cart) %>
 <% else %>
   <h2>Your cart empty</h2>
+  <%= link_to 'Go back', root_path %>
 <% end %>

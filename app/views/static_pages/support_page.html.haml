@@ -1,0 +1,6 @@
+=simple_form_for(@message, url:  messages_path) do |f|
+  =f.input :name, label: 'Your name'
+  =f.input :last_name, label: 'Your surname'
+  =f.input :email, as: :email
+  =f.input :msg_body,  label: 'Body message', as: :text
+  =f.button :submit

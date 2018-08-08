@@ -7,7 +7,7 @@
 
   def new
     @product = Product.new
-    @category = Product::Category_name
+    @category = Product::CategoryName
   end
 
   def create

@@ -5,11 +5,11 @@ class Product < ApplicationRecord
   validates :category,    presence: true
 
   has_many :order_items
-  has_many :orders
+  has_many :orders, through: :order_items
 
   mount_uploader :image, ImageUploader
 
-  Category_name = %w[Souvenirs Сups Caps Pendents]
+  CategoryName = %w[Souvenirs Сups Caps Pendents]
 
   extend FriendlyId
   friendly_id :name

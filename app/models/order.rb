@@ -14,7 +14,6 @@ class Order < ApplicationRecord
      else
        create_order_items = order_items.create(product_id: product[:product_id], quantity: product[:quantity],
                                                order_id: self.id)
-
      end
   end
 end
